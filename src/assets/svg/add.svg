@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>新建问题</title>
+    <desc>Created with Sketch.</desc>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="新建" fill="#FFFFFF">
+            <g id="形状结合">
+                <path d="M8.5,2 C8.77614237,2 9,2.22385763 9,2.5 L9,6.999 L13.5,7 C13.7761424,7 14,7.22385763 14,7.5 C14,7.77614237 13.7761424,8 13.5,8 L8.999,7.999 L9,12.5 C9,12.7761424 8.77614237,13 8.5,13 C8.22385763,13 8,12.7761424 8,12.5 L7.999,7.999 L3.5,8 C3.22385763,8 3,7.77614237 3,7.5 C3,7.22385763 3.22385763,7 3.5,7 L8,6.999 L8,2.5 C8,2.22385763 8.22385763,2 8.5,2 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

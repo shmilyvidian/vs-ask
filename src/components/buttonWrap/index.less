@@ -1,0 +1,46 @@
+.buttonWrap-btn {
+    width: 88px;
+    padding: 5px 6px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 4px;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__primary {
+        color: #fff;
+    }
+
+    &__default {
+        color: #C0C4CC;
+    }
+    &__isDelete{
+        border: 1px solid #EF4642;
+        color: #EF4642
+    }
+
+    &-icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+
+        &__add {
+            background: url('../../assets/svg/add.svg');
+        }
+
+        &__delete {
+            background: url('../../assets/svg/deleteGray.svg');
+        }
+
+        &__deleteActive {
+            background: url('../../assets/svg/delete.svg');
+        }
+    }
+}
