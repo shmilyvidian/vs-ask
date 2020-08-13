@@ -162,9 +162,7 @@ const TableWrap = ({ callback }: ITable) => {
         <span>状态</span>
         <CaretDownOutlined
           style={{
-            color: filterState.some((v) => v === true)
-              ? "blue"
-              : "#c1c5cd",
+            color: "#c1c5cd",
           }}
           className="mr10"
         />
@@ -188,6 +186,7 @@ const TableWrap = ({ callback }: ITable) => {
         return (
           <span>
             <Link
+            className="link-class"
               to={{ pathname: "/add", state: { name: record.name } }}
             >
               {record.name}
@@ -195,10 +194,6 @@ const TableWrap = ({ callback }: ITable) => {
           </span>
         );
       },
-    },
-    {
-      title: "标题",
-      dataIndex: "name",
     },
     {
       title: "开始时间",
