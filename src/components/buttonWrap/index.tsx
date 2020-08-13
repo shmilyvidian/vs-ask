@@ -29,40 +29,40 @@ const ButtonWrap = ({ btnInfos }: IInfos) => {
 					<FormItem>
 						{btnInfos.length > 0
 							? btnInfos.map((o, i) => {
-									return (
-										// <Popover key={i} placement="top" content={o['tip']}>
-										<Button
-											key={i}
-											onClick={() => onClick(o)}
-											type={o["type"]}
-											disabled={o["disabled"]}
-											className={`buttonWrap-btn buttonWrap-btn__${
-												o["type"]
+								return (
+									// <Popover key={i} placement="top" content={o['tip']}>
+									<Button
+										key={i}
+										onClick={() => onClick(o)}
+										type={o["type"]}
+										disabled={o["disabled"]}
+										className={`buttonWrap-btn buttonWrap-btn__${
+											o["type"]
 											} m__r--10 ${
-												o["isDelete"]
-													? "buttonWrap-btn__isDelete"
-													: ""
+											o["isDelete"]
+												? "buttonWrap-btn__isDelete"
+												: ""
 											}  `}
-										>
-											<div className="buttonWrap-btn__content">
-												{o["icon"] === "delete" && (
-													<DeleteFilled />
-												)}
-												{o["icon"] === "add" && (
-													<PlusOutlined
-														style={{
-															background: "none",
-															borderRadius: "0",
-															padding: "0",
-														}}
-													/>
-												)}
-												<span>{o["name"]}</span>
-											</div>
-										</Button>
-										// </Popover>
-									);
-							  })
+									>
+										<div className="buttonWrap-btn__content">
+											{o["icon"] === "delete" && (
+												<DeleteFilled />
+											)}
+											{o["icon"] === "add" && (
+												<PlusOutlined
+													style={{
+														background: "none",
+														borderRadius: "0",
+														padding: "0",
+													}}
+												/>
+											)}
+											<span>{o["name"]}</span>
+										</div>
+									</Button>
+									// </Popover>
+								);
+							})
 							: null}
 					</FormItem>
 				</Col>

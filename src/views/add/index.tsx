@@ -4,6 +4,7 @@ import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
 
 import "./add.less";
+import { data, DataType } from "components/tableWrap";
 
 const Add = () => {
 	const history = useHistory();
@@ -27,7 +28,30 @@ const Add = () => {
 		},
 	};
 	const onFinish = (values: any) => {
-		console.log(values);
+		let orign = data;
+		const date = new Date();
+		const starttime = `${date.getFullYear()}-${
+			date.getMonth() + 1
+		}-${date.getDate()}`;
+		if (defaultTitle) {
+			const ob = history.location.state as { key: number };
+			const key = ob.key;
+			orign.forEach((v) => {
+				if (v.key === key) {
+					v.name = values.user.name;
+					v.startTime = starttime;
+				}
+			});
+		} else {
+			const item: DataType = {
+				key: Math.random() + Date.now(),
+				state: 1,
+				name: values.user.name,
+				startTime: starttime,
+			};
+			orign.push(item);
+		}
+		history.push("/");
 	};
 	const [fileList, setFileList] = useState<any[]>([]);
 	const uploadButton = (
@@ -43,6 +67,19 @@ const Add = () => {
 			return e;
 		}
 		return e && e.fileList;
+	};
+	const [customFilist, setCustomFilist] = useState([]);
+	const handleChange = (e: any) => {
+		const file = e.file;
+		const fileList = e.fileList;
+		if (file.status !== "uploading") {
+		} else {
+			fileList.forEach((v: any) => {
+				v.percent = 100;
+				v.status = "done";
+			});
+		}
+		setCustomFilist(fileList);
 	};
 	const defaultTitle = useMemo(() => {
 		let v;
@@ -93,7 +130,10 @@ const Add = () => {
 			>
 				<Upload
 					multiple
-					action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+					customRequest={(e) => console.log(e)}
+					onChange={handleChange}
+					fileList={customFilist}
+					// action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 				>
 					<Button type="primary">
 						<UploadOutlined /> 上传附件
