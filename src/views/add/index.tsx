@@ -16,7 +16,7 @@ const Add = () => {
 	const history = useHistory();
 	const layout = {
 		labelCol: { span: 8 },
-		wrapperCol: { span: 8 },
+		wrapperCol: { span: 16 },
 	};
 
 	const validateMessages = {
@@ -99,6 +99,7 @@ const Add = () => {
 		<Form
 			{...layout}
 			name="nest-messages"
+			className="form-wrapper"
 			onFinish={onFinish}
 			validateMessages={validateMessages}
 		>
@@ -108,14 +109,14 @@ const Add = () => {
 				rules={[{ required: true }]}
 				initialValue={defaultTitle}
 			>
-				<Input />
+				<Input className="input-textarea"/>
 			</Form.Item>
 			<Form.Item
 				name={["user", "introduction"]}
 				label="问题描述"
 				rules={[{ required: true }]}
 			>
-				<Input.TextArea />
+				<Input.TextArea rows={7} className="input-textarea" />
 			</Form.Item>
 			<Form.Item name={["user", "image"]} label="图片">
 				<Upload
@@ -174,7 +175,7 @@ const Add = () => {
 				</div>
 			</Form.Item>
 			<Form.Item name={["user", "telphone"]} label="回访电话">
-				<Input />
+				<Input className="input-textarea"/>
 			</Form.Item>
 			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
 				<Button type="primary" htmlType="submit" className="m__r--10">
