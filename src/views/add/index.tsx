@@ -46,21 +46,26 @@ const Add = () => {
     const starttime = `${date.getFullYear()}-${
       date.getMonth() + 1
       }-${date.getDate()}`;
-    if (defaultTitle) {
+    if (defaultTitle || defaultIntroduction || defaultTelphone) {
       const ob = history.location.state as { key: number };
       const key = ob.key;
       orign.forEach((v) => {
         if (v.key === key) {
           v.name = values.user.name;
           v.startTime = starttime;
+          v.introduction = values.user.introduction;
+          v.telphone = values.user.telphone;
         }
       });
-    } else {
+    }
+    else {
       const item: DataType = {
         key: Math.random() + Date.now(),
         state: 1,
         name: values.user.name,
         startTime: starttime,
+        introduction: values.user.introduction,
+        telphone: values.user.telphone
       };
       orign.push(item);
     }
@@ -102,6 +107,24 @@ const Add = () => {
     }
     return v;
   }, [history.location.state]);
+  const defaultIntroduction = useMemo(() => {
+    let v;
+    if (history.location.state) {
+      let t = history.location.state as { introduction: string };
+      v = t.introduction;
+    }
+    return v;
+  }, [history.location.state]);
+
+  const defaultTelphone = useMemo(() => {
+    let v;
+    if (history.location.state) {
+      let t = history.location.state as { telphone: string };
+      v = t.telphone;
+    }
+    return v;
+  }, [history.location.state]);
+
   return (
     <Form
       {...layout}
@@ -114,7 +137,7 @@ const Add = () => {
         name={["user", "name"]}
         label="标题"
         rules={[{ required: true }]}
-        initialValue={defaultTitle}
+        initialValue={defaultTitle} 
       >
         <Input className="input-textarea" />
       </Form.Item>
@@ -122,6 +145,7 @@ const Add = () => {
         name={["user", "introduction"]}
         label="问题描述"
         rules={[{ required: true }]}
+        initialValue={defaultIntroduction}
       >
         <Input.TextArea rows={7} className="input-textarea" />
       </Form.Item>
@@ -168,7 +192,7 @@ const Add = () => {
                 <div className="title-name-item"><FolderOpenOutlined /> {v.name}</div>
                 <div className="uploadState">
                   {
-                    v.status === 'done' ? <img className="success" src={success}  alt="" /> : <img src={fail}  alt="" />
+                    v.status === 'done' ? <img className="success" src={success} alt="" /> : <img src={fail} alt="" />
                   }
                   {v.status === 'done' ? '成功' : '失败'}
                 </div>
@@ -187,7 +211,7 @@ const Add = () => {
           })}
         </div>
       </Form.Item>
-      <Form.Item name={["user", "telphone"]} label="回访电话">
+      <Form.Item name={["user", "telphone"]} label="回访电话" initialValue={defaultTelphone} >
         <Input className="input-textarea" />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
