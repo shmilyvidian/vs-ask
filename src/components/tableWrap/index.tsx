@@ -17,7 +17,7 @@ export interface DataType {
   startTime: string;
   state: number;
   introduction: string;
-  telphone:string;
+  telphone: string;
 }
 
 export interface DelFnType {
@@ -32,9 +32,9 @@ export const data: DataType[] = [
     startTime: "2020-08-06",
     state: 0,
     introduction: "ce",
-    telphone:"18565971256"
+    telphone: "18565971256"
   },
-  { key: 1, name: "认证不成功", startTime: "2020-08-06", state: 1, introduction: "测试",telphone:"13965971356" },
+  { key: 1, name: "认证不成功", startTime: "2020-08-06", state: 1, introduction: "测试", telphone: "13965971356" },
 ];
 
 // const filterIcon = <CaretDownOutlined />;
@@ -166,9 +166,7 @@ const TableWrap = ({ callback }: ITable) => {
         <span>状态</span>
         <CaretDownOutlined
           style={{
-            color: filterState.some((v) => v === true)
-              ? "blue"
-              : "#c1c5cd",
+            color: "#c1c5cd",
           }}
           className="mr10"
         />
@@ -192,7 +190,8 @@ const TableWrap = ({ callback }: ITable) => {
         return (
           <span>
             <Link
-              to={{ pathname: "/add", state: { name: record.name ,introduction:record.introduction,telphone:record.telphone} }}
+              className="link-class"
+              to={{ pathname: "/add", state: { name: record.name, introduction: record.introduction, telphone: record.telphone } }}
             >
               {record.name}
             </Link>
