@@ -5,6 +5,8 @@ import TableWrap, { DelFnType } from "components/tableWrap";
 import ModalWrap, { IFooter } from "components/modalWrap/modalWrap";
 import { InfoCircleFilled } from "@ant-design/icons";
 
+
+
 import './index.less'
 
 // 删除模板内容
@@ -91,6 +93,9 @@ const Home = () => {
         content={deleteDialogContent}
         type="info"
       />
+
+      <div className="ask-endorsement">
+      </div>
     </div>
   );
 };
