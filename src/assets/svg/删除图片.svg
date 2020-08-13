@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>删除图片</title>
+    <desc>Created with Sketch.</desc>
+    <g id="删除图片" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M10,0 C4.4765625,0 0,4.4765625 0,10 C0,15.5234375 4.4765625,20 10,20 C15.5234375,20 20,15.5234375 20,10 C20,4.4765625 15.5234375,0 10,0 L10,0 Z" id="error" fill="#000000" opacity="0.300000012"></path>
+        <path d="M10,5 C10.2761424,5 10.5,5.22385763 10.5,5.5 L10.5,9.499 L14.5,9.5 C14.7761424,9.5 15,9.72385763 15,10 C15,10.2761424 14.7761424,10.5 14.5,10.5 L10.5,10.499 L10.5,14.5 C10.5,14.7761424 10.2761424,15 10,15 C9.72385763,15 9.5,14.7761424 9.5,14.5 L9.5,10.499 L5.5,10.5 C5.22385763,10.5 5,10.2761424 5,10 C5,9.72385763 5.22385763,9.5 5.5,9.5 L9.5,9.499 L9.5,5.5 C9.5,5.22385763 9.72385763,5 10,5 Z" id="形状结合" fill="#FFFFFF" transform="translate(10.000000, 10.000000) rotate(-315.000000) translate(-10.000000, -10.000000) "></path>
+    </g>
+</svg>
