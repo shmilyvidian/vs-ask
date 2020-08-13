@@ -131,6 +131,7 @@ const TableWrap = ({ callback }: ITable) => {
   const filterTitle = (
     <Popover
       placement="bottomRight"
+      autoAdjustOverflow
       content={
         <div className="filter-wrapper">
           <div
@@ -149,6 +150,7 @@ const TableWrap = ({ callback }: ITable) => {
               cursor: "pointer",
               color: filterState[1] ? "blue" : "black",
             }}
+            className="font-color"
           >
             处理中
 					</div>
@@ -162,8 +164,9 @@ const TableWrap = ({ callback }: ITable) => {
           style={{
             color: filterState.some((v) => v === true)
               ? "blue"
-              : "black",
+              : "#c1c5cd",
           }}
+          className="mr10"
         />
       </span>
     </Popover>
