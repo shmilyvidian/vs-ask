@@ -26,41 +26,37 @@ const ButtonWrap = ({ btnInfos }: IInfos) => {
     <Form className="main__btn--form">
       <Row justify="start">
         <Col>
-          <FormItem className="12321">
+          <div className="button-wrapper">
             {btnInfos.length > 0
-              ? btnInfos.map((o, i) => {
+              ? btnInfos.map((item, i) => {
                 return (
                   // <Popover key={i} placement="top" content={o['tip']}>
-                  <Button
+                  <div
                     key={i}
-                    onClick={() => onClick(o)}
-                    type={o["type"]}
-                    disabled={o["disabled"]}
-                    className={`buttonWrap-btn buttonWrap-btn__${
-                      o["type"]
-                      } m__r--10 ${
-                      o["isDelete"]
-                        ? "buttonWrap-btn__isDelete"
-                        : ""
-                      }  `}
+                    onClick={() => onClick(item)}
+                    className={`
+                    button-wrapper-btn
+                    button-wrapper-btn-${item.type}
+                    ${item["isDelete"] ? 'button-wrapper-btn-isDelete' :''}
+                    `}
                   >
-                    <div className="buttonWrap-btn-content">
-                      {o["icon"] === "delete" && (
-                        <DeleteFilled className="button-wrape-delete-icon" />
+                    <div className="button-wrap-btn-content">
+                      {item["icon"] === "delete" && (
+                        <div className={item["isDelete"]?'btn-icon-delete-active':'btn-icon-delete'}></div>
                       )}
-                      {o["icon"] === "add" && (
+                      {item["icon"] === "add" && (
                         <PlusOutlined
-                          className="button-wrape-add-icon"
+                          className="button-wrap-add-icon"
                         />
                       )}
-                      <span className="button-wrape-add-text">{o["name"]}</span>
+                      <span className="button-wrap-add-text">{item["name"]}</span>
                     </div>
-                  </Button>
+                  </div>
                   // </Popover>
                 );
               })
               : null}
-          </FormItem>
+          </div>
         </Col>
       </Row>
     </Form>
