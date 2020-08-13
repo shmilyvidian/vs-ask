@@ -4,30 +4,33 @@ import { TableRowSelection, ColumnsType } from "antd/lib/table/interface";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
+import './index.less'
+
+
 interface ITable {
-	callback: any;
+  callback: any;
 }
 
 export interface DataType {
-	key: number;
-	name: string;
-	startTime: string;
-	state: number;
+  key: number;
+  name: string;
+  startTime: string;
+  state: number;
 }
 
 export interface DelFnType {
-	isDel: boolean;
-	delfn: () => void;
-} 
+  isDel: boolean;
+  delfn: () => void;
+}
 
 export const data: DataType[] = [
-	{
-		key: 0,
-		name: "文字消息发出后无法撤回",
-		startTime: "2020-08-06",
-		state: 0,
-	},
-	{ key: 1, name: "认证不成功", startTime: "2020-08-06", state: 1 },
+  {
+    key: 0,
+    name: "文字消息发出后无法撤回",
+    startTime: "2020-08-06",
+    state: 0,
+  },
+  { key: 1, name: "认证不成功", startTime: "2020-08-06", state: 1 },
 ];
 
 // const filterIcon = <CaretDownOutlined />;
@@ -107,145 +110,146 @@ export const data: DataType[] = [
 // };
 
 const TableWrap = ({ callback }: ITable) => {
-	const [selectedRowKeys, setRowKeys] = useState([]);
-	const [innerData, setInnerData] = useState<DataType[]>(data);
-	const [filterData, setFilterData] = useState<DataType[]>([]);
-	const [filterState, setFilterState] = useState([false, false]);
-	const handleclick = (v: number) => {
-		let arr = [false, false];
-		arr[v] = !filterState[v];
-		setRowKeys([]);
-		setFilterState(arr);
-		if (!filterState[v]) {
-			const newData = innerData.filter((f) => f.state === v);
-			console.log(newData);
-			setFilterData(newData);
-		} else {
-			setFilterData([]);
-		}
-	};
+  const [selectedRowKeys, setRowKeys] = useState([]);
+  const [innerData, setInnerData] = useState<DataType[]>(data);
+  const [filterData, setFilterData] = useState<DataType[]>([]);
+  const [filterState, setFilterState] = useState([false, false]);
+  const handleclick = (v: number) => {
+    let arr = [false, false];
+    arr[v] = !filterState[v];
+    setRowKeys([]);
+    setFilterState(arr);
+    if (!filterState[v]) {
+      const newData = innerData.filter((f) => f.state === v);
+      console.log(newData);
+      setFilterData(newData);
+    } else {
+      setFilterData([]);
+    }
+  };
 
-	const filterTitle = (
-		<Popover
-			placement="bottomRight"
-			content={
-				<div>
-					<div
-						onClick={() => handleclick(0)}
-						style={{
-							cursor: "pointer",
-							color: filterState[0] ? "blue" : "black",
-						}}
-					>
-						已完成
+  const filterTitle = (
+    <Popover
+      placement="bottomRight"
+      content={
+        <div className="filter-wrapper">
+          <div
+            onClick={() => handleclick(0)}
+            style={{
+              cursor: "pointer",
+              color: filterState[0] ? "blue" : "black",
+            }}
+            className="filter-wrapper-top"
+          >
+            已完成
 					</div>
-					<div
-						onClick={() => handleclick(1)}
-						style={{
-							cursor: "pointer",
-							color: filterState[1] ? "blue" : "black",
-						}}
-					>
-						处理中
+          <div
+            onClick={() => handleclick(1)}
+            style={{
+              cursor: "pointer",
+              color: filterState[1] ? "blue" : "black",
+            }}
+          >
+            处理中
 					</div>
-				</div>
-			}
-			trigger={["click", "hover"]}
-		>
-			<span style={{ cursor: "pointer" }}>
-				<span>状态</span>
-				<CaretDownOutlined
-					style={{
-						color: filterState.some((v) => v === true)
-							? "blue"
-							: "black",
-					}}
-				/>
-			</span>
-		</Popover>
-	);
+        </div>
+      }
+      trigger={["click", "hover"]}
+    >
+      <span style={{ cursor: "pointer" }}>
+        <span>状态</span>
+        <CaretDownOutlined
+          style={{
+            color: filterState.some((v) => v === true)
+              ? "blue"
+              : "black",
+          }}
+        />
+      </span>
+    </Popover>
+  );
 
-	const chooseData = useMemo(() => {
-		if (filterState.some((v) => v === true)) {
-			return filterData;
-		} else {
-			return innerData;
-		}
-	}, [filterState, innerData, filterData]);
+  const chooseData = useMemo(() => {
+    if (filterState.some((v) => v === true)) {
+      return filterData;
+    } else {
+      return innerData;
+    }
+  }, [filterState, innerData, filterData]);
 
-	const columns: ColumnsType<DataType> = [
-		{
-			title: "标题",
-			dataIndex: "name",
-			render: (_: any, record: DataType) => {
-				return (
-					<span>
-						<Link
-							to={{ pathname: "/add", state: { name: record.name } }}
-						>
-							{record.name}
-						</Link>
-					</span>
-				);
-			},
-		},
-		{
-			title: "标题",
-			dataIndex: "name",
-		},
-		{
-			title: "开始时间",
-			dataIndex: "startTime",
-			width: 200,
-		},
-		{
-			title: filterTitle,
-			dataIndex: "state",
-			width: 200,
-			render: (_: any, record: DataType) => {
-				return <span>{record.state === 0 ? "已完成" : "处理中"}</span>;
-			},
-		},
-	];
-	const rowSelection: TableRowSelection<DataType> = {
-		selectedRowKeys,
-		onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
-			const delfn = () => {
-				let remain = innerData;
-				selectedRows.forEach((v) => {
-					remain = remain.filter((l) => l.key !== v.key);
-				});
-				setInnerData(remain);
-				if (filterData.length > 0) {
-					setFilterData([]);
-					setFilterState([false, false]);
-				}
-			};
-			let isDel: boolean;
-			if (selectedRowKeys.length > 0) {
-				isDel = true;
-				callback({
-					delfn,
-					isDel,
-				});
-			} else {
-				isDel = false;
-				callback({
-					delfn,
-					isDel,
-				});
-			}
-			setRowKeys(selectedRowKeys);
-		},
-	};
+  const columns: ColumnsType<DataType> = [
+    {
+      title: "标题",
+      dataIndex: "name",
+      render: (_: any, record: DataType) => {
+        return (
+          <span>
+            <Link
+              to={{ pathname: "/add", state: { name: record.name } }}
+            >
+              {record.name}
+            </Link>
+          </span>
+        );
+      },
+    },
+    {
+      title: "标题",
+      dataIndex: "name",
+    },
+    {
+      title: "开始时间",
+      dataIndex: "startTime",
+      width: 200,
+    },
+    {
+      title: filterTitle,
+      dataIndex: "state",
+      width: 200,
+      render: (_: any, record: DataType) => {
+        return <span>{record.state === 0 ? "已完成" : "处理中"}</span>;
+      },
+    },
+  ];
+  const rowSelection: TableRowSelection<DataType> = {
+    selectedRowKeys,
+    onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
+      const delfn = () => {
+        let remain = innerData;
+        selectedRows.forEach((v) => {
+          remain = remain.filter((l) => l.key !== v.key);
+        });
+        setInnerData(remain);
+        if (filterData.length > 0) {
+          setFilterData([]);
+          setFilterState([false, false]);
+        }
+      };
+      let isDel: boolean;
+      if (selectedRowKeys.length > 0) {
+        isDel = true;
+        callback({
+          delfn,
+          isDel,
+        });
+      } else {
+        isDel = false;
+        callback({
+          delfn,
+          isDel,
+        });
+      }
+      setRowKeys(selectedRowKeys);
+    },
+  };
 
-	return (
-		<Table
-			rowSelection={rowSelection}
-			columns={columns}
-			dataSource={chooseData}
-		></Table>
-	);
+  return (
+    <Table
+      rowSelection={rowSelection}
+      columns={columns}
+      dataSource={chooseData}
+    ></Table>
+  );
 };
 
 export default TableWrap;
