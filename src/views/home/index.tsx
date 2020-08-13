@@ -27,8 +27,8 @@ const Home = () => {
       callback: () => history.push("/add"),
     },
     {
-      name: "删除",
-      tip: "删除",
+      name: "删 除",
+      tip: "删 除",
       type: "default",
       icon: "delete",
       isDelete: false,

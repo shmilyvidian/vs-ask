@@ -1,46 +1,130 @@
 .buttonWrap-btn {
+  width: 88px;
+  font-size: 14px;
+  text-align: center;
+  padding: 0;
+  height: 32px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  align-items: center;
+
+  // 重置ant默认样式
+  &-content {
+    margin-right: 0 !important;
+  }
+
+  &__primary {
+    color: #fff;
+  }
+
+  &__default {
+    color: #C0C4CC;
+  }
+
+  &__isDelete {
+    border: 1px solid #EF4642;
+    color: #EF4642
+  }
+
+  &-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+
+    &__add {
+      background: url('../../assets/svg/add.svg');
+    }
+
+    &__delete {
+      background: url('../../assets/svg/deleteGray.svg');
+    }
+
+    &__deleteActive {
+      background: url('../../assets/svg/delete.svg');
+    }
+  }
+}
+
+.button-wrap {
+  &-delete-icon {
+    margin-right: 4px;
+  }
+
+  &-btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0 !important;
+    height: 32px;
+  }
+
+  &-add-icon {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    padding: 0 !important;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    margin-top: -3px;
+    margin-left: -4px;
+    margin-right: 2px;
+    transform:scale(0.8);  
+  }
+
+}
+
+
+.button-wrapper {
+  display: flex;
+  margin-bottom: 16px;
+
+  &-btn {
     width: 88px;
-    padding: 5px 6px;
-    font-family: PingFangSC-Regular;
-    font-size: 14px;
-    text-align: center;
-    line-height: 22px;
+    height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
     border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+  }
 
-    &__content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    &__primary {
-        color: #fff;
-    }
 
-    &__default {
-        color: #C0C4CC;
-    }
-    &__isDelete{
-        border: 1px solid #EF4642;
-        color: #EF4642
-    }
+  &-btn-primary {
+    color: #fff;
+    background-color: #1890FF;
+    border-color: #1890FF;
+  }
 
-    &-icon {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        margin-right: 4px;
+  &-btn-default {
+    color: #C0C4CC;
+  }
 
-        &__add {
-            background: url('../../assets/svg/add.svg');
-        }
+  &-btn-isDelete {
+    color: #EF4642;
+    border-color: #EF4642;
+    ;
+  }
+}
 
-        &__delete {
-            background: url('../../assets/svg/deleteGray.svg');
-        }
+.btn-icon-common {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
 
-        &__deleteActive {
-            background: url('../../assets/svg/delete.svg');
-        }
-    }
+.btn-icon-delete:extend(.btn-icon-common) {
+  background: url('../../assets/svg/deleteGray.svg');
+}
+
+.btn-icon-delete-active:extend(.btn-icon-common) {
+  background: url('../../assets/svg/delete.svg');
 }
