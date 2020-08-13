@@ -29,7 +29,7 @@ const ModalWrap = ({
   return (
     <Modal
       visible={true}
-      closable={false}
+      closable={true}
       wrapClassName="ModalWrap__style"
       onCancel={() => {
         footer.onCancel();

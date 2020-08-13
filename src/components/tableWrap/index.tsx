@@ -50,12 +50,12 @@ const columns: ColumnsType<DataType> = [
 	{
 		title: "开始时间",
 		dataIndex: "startTime",
-		width: 200,
+		width: 150,
 	},
 	{
 		title: "状态",
 		dataIndex: "state",
-		width: 200,
+		width: 80,
 		filterIcon: filterIcon,
 		filters: [
 			{
