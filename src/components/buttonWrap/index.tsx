@@ -4,7 +4,6 @@ import { ButtonType } from "antd/lib/button";
 import "./index.less";
 import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
 
-const FormItem = Form.Item;
 
 export type IBtn = {
   name: string;
@@ -17,8 +16,9 @@ export type IBtn = {
 };
 export interface IInfos {
   btnInfos: IBtn[];
+  isChecked: boolean;
 }
-const ButtonWrap = ({ btnInfos }: IInfos) => {
+const ButtonWrap = ({ btnInfos, isChecked}: IInfos) => {
   function onClick(btn: IBtn) {
     if (btn.callback) btn.callback();
   }
@@ -26,7 +26,9 @@ const ButtonWrap = ({ btnInfos }: IInfos) => {
     <Form className="main__btn--form">
       <Row justify="start">
         <Col>
+
           <div className="button-wrapper">
+
             {btnInfos.length > 0
               ? btnInfos.map((item, i) => {
                 return (
@@ -37,17 +39,18 @@ const ButtonWrap = ({ btnInfos }: IInfos) => {
                     className={`
                     button-wrapper-btn
                     button-wrapper-btn-${item.type}
-                    ${item["isDelete"] ? 'button-wrapper-btn-isDelete' :''}
+                    ${item["isDelete"] && isChecked ? 'button-wrapper-btn-isDelete' : ''}
                     `}
                   >
                     <div className="button-wrap-btn-content">
                       {item["icon"] === "delete" && (
-                        <div className={item["isDelete"]?'btn-icon-delete-active':'btn-icon-delete'}></div>
+                        <div className={isChecked ? 'btn-icon-delete-active' : 'btn-icon-delete'}></div>
                       )}
                       {item["icon"] === "add" && (
                         <PlusOutlined
                           className="button-wrap-add-icon"
                         />
+
                       )}
                       <span className="button-wrap-add-text">{item["name"]}</span>
                     </div>

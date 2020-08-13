@@ -33,11 +33,15 @@ const Home = () => {
       tip: "删 除",
       type: "default",
       icon: "delete",
-      isDelete: false,
+      isDelete: true,
       disabled: true,
-      callback: () => { },
+      callback: () => {
+      },
     },
   ];
+
+  // 判断是否有选中
+  let [isChecked,setIsChecked] = useState(false)
   const history = useHistory();
   const [btnInfos, setBtnInfos] = useState<IBtn[]>(infos);
 
@@ -56,6 +60,7 @@ const Home = () => {
     cancleClsName: "",
     cancleTxt: "取消",
     onOk: () => {
+      setIsChecked(false)
       okCancelFn.fn();
     },
     onCancel: () => {
@@ -63,18 +68,23 @@ const Home = () => {
     },
   };
   function onCallback(isDelete: DelFnType) {
+    console.log(isChecked)
     if (isDelete.isDel) {
       let origin = infos;
       let delbtn = origin[1];
       delbtn.disabled = false;
-      delbtn.isDelete = true;
+      // delbtn.isDelete = true;
       delbtn.callback = () => modalControl(true);
+
+      setIsChecked(true)
       setBtnInfos([...origin]);
     } else {
       let origin = infos;
       let delbtn = origin[1];
       delbtn.disabled = true;
-      delbtn.isDelete = false;
+      // delbtn.isDelete = false;
+
+      setIsChecked(false)
       setBtnInfos([...origin]);
     }
     const fn = () => {
@@ -85,7 +95,8 @@ const Home = () => {
   }
   return (
     <div className="vs-ask__home">
-      <ButtonWrap btnInfos={btnInfos} />
+      <ButtonWrap btnInfos={btnInfos} isChecked={isChecked}/>
+      {isChecked}
       <TableWrap callback={onCallback} />
       <ModalWrap
         modal_visible={confirmVisible}
