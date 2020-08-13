@@ -1,10 +1,16 @@
 import React, { useState, useMemo } from "react";
 import { Form, Input, Button, Upload } from "antd";
-import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import {
+	PlusOutlined,
+	UploadOutlined,
+	FolderOpenOutlined,
+} from "@ant-design/icons";
 import { useHistory } from "react-router";
 
 import "./add.less";
 import { data, DataType } from "components/tableWrap";
+import { Descriptions } from "antd";
+import { UploadFile } from "antd/lib/upload/interface";
 
 const Add = () => {
 	const history = useHistory();
@@ -32,7 +38,7 @@ const Add = () => {
 		const date = new Date();
 		const starttime = `${date.getFullYear()}-${
 			date.getMonth() + 1
-		}-${date.getDate()}`;
+			}-${date.getDate()}`;
 		if (defaultTitle) {
 			const ob = history.location.state as { key: number };
 			const key = ob.key;
@@ -68,7 +74,7 @@ const Add = () => {
 		}
 		return e && e.fileList;
 	};
-	const [customFilist, setCustomFilist] = useState([]);
+	const [customFilist, setCustomFilist] = useState<UploadFile<any>[]>([]);
 	const handleChange = (e: any) => {
 		const file = e.file;
 		const fileList = e.fileList;
@@ -88,7 +94,7 @@ const Add = () => {
 			v = t.name;
 		}
 		return v;
-	}, []);
+	}, [history.location.state]);
 	return (
 		<Form
 			{...layout}
@@ -133,7 +139,7 @@ const Add = () => {
 					customRequest={(e) => console.log(e)}
 					onChange={handleChange}
 					fileList={customFilist}
-					// action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+				// action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 				>
 					<Button type="primary">
 						<UploadOutlined /> 上传附件
@@ -142,6 +148,30 @@ const Add = () => {
 						最多可以上传5份文件，每个大小不超过10M
 					</span>
 				</Upload>
+				<div className="file-list">
+					<ul>
+						<li className="titleName">附件名称</li>
+						<li className="uploadState">上传状态</li>
+						<li className="operate">操作</li>
+					</ul>
+					{customFilist.map((v, i) => {
+						return (
+							<li className="fileItem">
+								<span className="titleName"><FolderOpenOutlined /> {v.name}</span>
+								<span className="uploadState">{v.status}</span>
+								<span
+									className="operate"
+									onClick={() => {
+										customFilist.splice(i, 1);
+										setCustomFilist([...customFilist]);
+									}}
+								>
+									删除
+								</span>
+							</li>
+						);
+					})}
+				</div>
 			</Form.Item>
 			<Form.Item name={["user", "telphone"]} label="回访电话">
 				<Input />
