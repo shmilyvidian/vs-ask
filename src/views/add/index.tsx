@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Form, Input, Button, Upload } from "antd";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
@@ -44,6 +44,14 @@ const Add = () => {
 		}
 		return e && e.fileList;
 	};
+	const defaultTitle = useMemo(() => {
+		let v;
+		if (history.location.state) {
+			let t = history.location.state as { name: string };
+			v = t.name;
+		}
+		return v;
+	}, []);
 	return (
 		<Form
 			{...layout}
@@ -55,6 +63,7 @@ const Add = () => {
 				name={["user", "name"]}
 				label="标题"
 				rules={[{ required: true }]}
+				initialValue={defaultTitle}
 			>
 				<Input />
 			</Form.Item>

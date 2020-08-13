@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Form, Row, Col } from "antd";
 import { ButtonType } from "antd/lib/button";
 import "./index.less";
+import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
+
 const FormItem = Form.Item;
 
 export type IBtn = {
@@ -43,11 +45,16 @@ const ButtonWrap = ({ btnInfos }: IInfos) => {
 											}  `}
 										>
 											<div className="buttonWrap-btn__content">
-												{o["icon"] && (
-													<i
-													// className={
-													//     `buttonWrap-btn-icon ${o['isDelete'] ? 'buttonWrap-btn-icon__deleteActive': `buttonWrap-btn-icon__${o['icon']}`
-													// }
+												{o["icon"] === "delete" && (
+													<DeleteFilled />
+												)}
+												{o["icon"] === "add" && (
+													<PlusOutlined
+														style={{
+															background: "none",
+															borderRadius: "0",
+															padding: "0",
+														}}
 													/>
 												)}
 												<span>{o["name"]}</span>
