@@ -7,68 +7,60 @@ import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
 const FormItem = Form.Item;
 
 export type IBtn = {
-	name: string;
-	tip: string;
-	disabled?: boolean;
-	type: ButtonType;
-	icon?: string;
-	isDelete?: boolean;
-	callback?: () => void;
+  name: string;
+  tip: string;
+  disabled?: boolean;
+  type: ButtonType;
+  icon?: string;
+  isDelete?: boolean;
+  callback?: () => void;
 };
 export interface IInfos {
-	btnInfos: IBtn[];
+  btnInfos: IBtn[];
 }
 const ButtonWrap = ({ btnInfos }: IInfos) => {
-	function onClick(btn: IBtn) {
-		if (btn.callback) btn.callback();
-	}
-	return (
-		<Form className="main__btn--form">
-			<Row justify="start">
-				<Col>
-					<FormItem>
-						{btnInfos.length > 0
-							? btnInfos.map((o, i) => {
-									return (
-										// <Popover key={i} placement="top" content={o['tip']}>
-										<Button
-											key={i}
-											onClick={() => onClick(o)}
-											type={o["type"]}
-											disabled={o["disabled"]}
-											className={`buttonWrap-btn buttonWrap-btn__${
-												o["type"]
-											} m__r--10 ${
-												o["isDelete"]
-													? "buttonWrap-btn__isDelete"
-													: ""
-											}  `}
-										>
-											<div className="buttonWrap-btn__content">
-												{o["icon"] === "delete" && (
-													<DeleteFilled />
-												)}
-												{o["icon"] === "add" && (
-													<PlusOutlined
-														style={{
-															background: "none",
-															borderRadius: "0",
-															padding: "0",
-														}}
-													/>
-												)}
-												<span>{o["name"]}</span>
-											</div>
-										</Button>
-										// </Popover>
-									);
-							  })
-							: null}
-					</FormItem>
-				</Col>
-			</Row>
-		</Form>
-	);
+  function onClick(btn: IBtn) {
+    if (btn.callback) btn.callback();
+  }
+  return (
+    <Form className="main__btn--form">
+      <Row justify="start">
+        <Col>
+          <div className="button-wrapper">
+            {btnInfos.length > 0
+              ? btnInfos.map((item, i) => {
+                return (
+                  // <Popover key={i} placement="top" content={o['tip']}>
+                  <div
+                    key={i}
+                    onClick={() => onClick(item)}
+                    className={`
+                    button-wrapper-btn
+                    button-wrapper-btn-${item.type}
+                    ${item["isDelete"] ? 'button-wrapper-btn-isDelete' :''}
+                    `}
+                  >
+                    <div className="button-wrap-btn-content">
+                      {item["icon"] === "delete" && (
+                        <div className={item["isDelete"]?'btn-icon-delete-active':'btn-icon-delete'}></div>
+                      )}
+                      {item["icon"] === "add" && (
+                        <PlusOutlined
+                          className="button-wrap-add-icon"
+                        />
+                      )}
+                      <span className="button-wrap-add-text">{item["name"]}</span>
+                    </div>
+                  </div>
+                  // </Popover>
+                );
+              })
+              : null}
+          </div>
+        </Col>
+      </Row>
+    </Form>
+  );
 };
 
 export default ButtonWrap;
