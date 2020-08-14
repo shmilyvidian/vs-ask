@@ -3,6 +3,7 @@ import { Form, Row, Col } from "antd";
 import { ButtonType } from "antd/lib/button";
 import "./index.less";
 import { PlusOutlined } from "@ant-design/icons";
+import classnames from "classnames";
 
 
 export type IBtn = {
@@ -31,31 +32,29 @@ const ButtonWrap = ({ btnInfos, isChecked }: IInfos) => {
 
             {btnInfos.length > 0
               ? btnInfos.map((item, i) => {
+                const bt_cls = `button-wrapper-btn-${item.type}`
+                const delete_cls = (item["isDelete"] && isChecked) ? 'button-wrapper-btn-isDelete' : ''
                 return (
-                  // <Popover key={i} placement="top" content={o['tip']}>
-                  <div
-                    key={i}
-                    onClick={() => onClick(item)}
-                    className={`
-                    button-wrapper-btn
-                    button-wrapper-btn-${item.type}
-                    ${item["isDelete"] && isChecked ? 'button-wrapper-btn-isDelete' : ''}
-                    `}
-                  >
-                    <div className="button-wrap-btn-content">
-                      {item["icon"] === "delete" && (
-                        <div className={isChecked ? 'btn-icon-delete-active' : 'btn-icon-delete'}></div>
-                      )}
-                      {item["icon"] === "add" && (
-                        <PlusOutlined
-                          className="button-wrap-add-icon"
-                        />
+                  <>
+                    <div
+                      key={i}
+                      onClick={() => onClick(item)}
+                      className = {classnames(bt_cls,delete_cls,'button-wrapper-btn')}
+                    >
+                      <div className="button-wrap-btn-content">
+                        {item["icon"] === "delete" && (
+                          <div className={isChecked ? 'btn-icon-delete-active' : 'btn-icon-delete'}></div>
+                        )}
+                        {item["icon"] === "add" && (
+                          <PlusOutlined
+                            className="button-wrap-add-icon"
+                          />
 
-                      )}
-                      <span className="button-wrap-add-text">{item["name"]}</span>
+                        )}
+                        <span className="button-wrap-add-text">{item["name"]}</span>
+                      </div>
                     </div>
-                  </div>
-                  // </Popover>
+                  </>
                 );
               })
               : null}
