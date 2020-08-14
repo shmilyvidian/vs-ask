@@ -256,13 +256,14 @@ const Add = () => {
                   </div>
                   <div
                     className="operate"
-                    onClick={() => {
+                  >
+                    <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                    <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
+                     alt=""
+                     onClick={() => {
                       customFilist.splice(i, 1);
                       setCustomFilist([...customFilist]);
-                    }}
-                  >
-                    <img src={download} className="download" alt="" />
-                    <img src={deleteImg} alt="" />
+                    }} />
                   </div>
                 </div>
               );
