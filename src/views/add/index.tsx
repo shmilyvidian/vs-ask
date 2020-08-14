@@ -182,18 +182,29 @@ const Add = () => {
       <Form.Item
         name={["user", "name"]}
         label="标题"
-        rules={[{ required: true }]}
+        rules={[
+          { required: true },
+          {
+            max:20,
+            message:"标题内容不能超过20个字符"
+          }
+        ]}
         initialValue={defaultTitle}
       >
-        <Input className="input-textarea" />
+        <Input className="input-textarea" placeholder="请输入标题"/>
       </Form.Item>
       <Form.Item
         name={["user", "introduction"]}
         label="问题描述"
-        rules={[{ required: true }]}
+        rules={[{ required: true },
+          {
+            max:200,
+            message:"问题描述不能超过200个字符"
+          }
+        ]}
         initialValue={defaultIntroduction}
       >
-        <Input.TextArea rows={7} className="input-textarea" />
+        <Input.TextArea rows={7} className="input-textarea" placeholder="请输入问题描述"/>
       </Form.Item>
       <Form.Item className="img-upload" name={["user", "image"]} label="图片">
         <Upload
@@ -265,8 +276,16 @@ const Add = () => {
           </div>
         </div>
       </Form.Item>
-      <Form.Item name={["user", "telphone"]} label="回访电话" initialValue={defaultTelphone} >
-        <Input className="input-textarea" />
+      <Form.Item name={["user", "telphone"]}
+        label="回访电话"
+        initialValue={defaultTelphone}
+        rules={[
+          {
+            pattern: /^1[3|4|5|7|8][0-9]\d{8}$/, message: '请输入正确的手机号'
+          }
+        ]}
+      >
+        <Input className="input-textarea" placeholder="请输入回访电话"/>
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <Button type="primary" htmlType="submit" className="m__r--10">
