@@ -65,7 +65,7 @@
     justify-content: center;
   }
 
-  .file-item-wrapper{
+  .file-item-wrapper {
     height: 115px;
     overflow-y: auto;
   }
@@ -73,7 +73,7 @@
   .file-item {
     padding-left: 15px;
     display: flex;
-    
+    margin-bottom: 20px;
   }
 }
 
@@ -87,15 +87,32 @@
   margin-top: 16px;
 }
 
-.title-name-item{
+.title-name-item {
   width: 276px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
-.download{
+
+.download {
   border-right: 1px solid #ccc;
   margin-right: 7px;
   padding-right: 7px;
 }
 
-.success{
+.success {
   margin-right: 4px;
+}
+
+.title-name-item-icon{
+  margin-right: 4px;
+}
+
+.title-name-item-text{
+  width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

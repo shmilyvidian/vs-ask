@@ -190,7 +190,10 @@ const Add = () => {
             {customFilist.map((v, i) => {
               return (
                 <div className="file-item">
-                  <div className="title-name-item"><FolderOpenOutlined /> {v.name}</div>
+                  <div className="title-name-item">
+                    <FolderOpenOutlined className="title-name-item-icon" />
+                    <div className="title-name-item-text">{v.name}</div>
+                  </div>
                   <div className="uploadState">
                     {
                       v.status === 'done' ? <img className="success" src={success} alt="" /> : <img src={fail} alt="" />
