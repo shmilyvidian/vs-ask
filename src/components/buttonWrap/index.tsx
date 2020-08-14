@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Form, Row, Col } from "antd";
+import { Form, Row, Col } from "antd";
 import { ButtonType } from "antd/lib/button";
 import "./index.less";
-import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 
 export type IBtn = {
@@ -18,7 +18,7 @@ export interface IInfos {
   btnInfos: IBtn[];
   isChecked: boolean;
 }
-const ButtonWrap = ({ btnInfos, isChecked}: IInfos) => {
+const ButtonWrap = ({ btnInfos, isChecked }: IInfos) => {
   function onClick(btn: IBtn) {
     if (btn.callback) btn.callback();
   }

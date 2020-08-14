@@ -216,6 +216,7 @@ const TableWrap = ({ callback }: ITable) => {
   const rowSelection: TableRowSelection<DataType> = {
     selectedRowKeys,
     onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
+      // 删除数据方法
       const delfn = () => {
         let remain = innerData;
         selectedRows.forEach((v) => {
