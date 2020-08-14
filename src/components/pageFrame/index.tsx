@@ -14,6 +14,7 @@ const PageFrame = () => {
   }
   return (
     <>
+    <div className="bg-wrapper">
       <header className="pageFrame-header">
         <div onClick={linkIndex}>
           <img src={require('assets/svg/logo.svg')} className="pageFrame-header_logo" alt="logo" />
@@ -24,10 +25,12 @@ const PageFrame = () => {
         </div>
       </header>
       <div className="pageFrame-container">
+
         <div className="pageFrame-container_content">
           <Route path="/home" component={Home}></Route>
           <Route path="/add" component={Add}></Route>
         </div>
+      </div>
       </div>
     </>
   )
