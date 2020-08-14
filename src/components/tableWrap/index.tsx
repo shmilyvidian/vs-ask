@@ -63,6 +63,16 @@ const TableWrap = ({ callback }: ITable) => {
       content={
         <div className="filter-wrapper">
           <div
+            onClick={() => handleclick(-1)}
+            style={{
+              cursor: "pointer",
+              color: filterState[-1] ? "blue" : "black",
+            }}
+            className="filter-wrapper-top"
+          >
+            全部
+					</div>
+          <div
             onClick={() => handleclick(0)}
             style={{
               cursor: "pointer",
