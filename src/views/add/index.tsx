@@ -149,7 +149,7 @@ const Add = () => {
       >
         <Input.TextArea rows={7} className="input-textarea" />
       </Form.Item>
-      <Form.Item name={["user", "image"]} label="图片">
+      <Form.Item className="img-upload" name={["user", "image"]} label="图片">
         <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           listType="picture-card"
