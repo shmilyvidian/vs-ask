@@ -181,7 +181,7 @@ const Add = () => {
 					</span>
         </Upload>
         <div className="file-list">
-          <ul>
+          <ul className="file-list-wrapper">
             <li className="titleName">附件名称</li>
             <li className="uploadState">上传状态</li>
             <li className="operate">操作</li>
