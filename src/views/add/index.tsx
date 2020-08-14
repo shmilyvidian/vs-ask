@@ -165,6 +165,7 @@ const Add = () => {
         getValueFromEvent={normFile}
         name={["user", "file"]}
         label="附件"
+        className="file-upload-btn"
       >
         <Upload
           multiple
