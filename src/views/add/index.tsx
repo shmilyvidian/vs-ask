@@ -244,7 +244,7 @@ const Add = () => {
                   </div>
                   <div className="uploadState">
                     {
-                      v.status === 'done' ? <img className="success" src={success} alt="" /> : <img src={fail} alt="" />
+                      v.status === 'done' ? <img className="success" src={success} alt="" /> : <img className="error" src={fail} alt="" />
                     }
                     {v.status === 'done' ? '成功' : '失败'}
                   </div>
