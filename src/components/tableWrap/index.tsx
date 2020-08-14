@@ -191,7 +191,7 @@ const TableWrap = ({ callback }: ITable) => {
           <span>
             <Link
               className="link-class"
-              to={{ pathname: "/add", state: { name: record.name, introduction: record.introduction, telphone: record.telphone } }}
+              to={{ pathname: "/add", state: { name: record.name, introduction: record.introduction, telphone: record.telphone, key: record.key } }}
             >
               {record.name}
             </Link>
