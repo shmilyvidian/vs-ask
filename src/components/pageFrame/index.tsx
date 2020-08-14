@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { useHistory } from "react-router";
 import Home from 'views/home'
 import Add from 'views/add'
+import Index from 'views/index'
 import './index.less'
 
 const PageFrame = () => {
@@ -27,6 +28,7 @@ const PageFrame = () => {
       <div className="pageFrame-container">
 
         <div className="pageFrame-container_content">
+        <Route path="/index" component={Index}></Route>
           <Route path="/home" component={Home}></Route>
           <Route path="/add" component={Add}></Route>
         </div>

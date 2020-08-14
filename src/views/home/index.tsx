@@ -106,11 +106,6 @@ const Home = () => {
         content={deleteDialogContent}
         type="info"
       />
-
-      <div className="ask-endorsement" onClick={
-        () => history.push("/add")
-      }>
-      </div>
     </div>
   );
 };

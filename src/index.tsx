@@ -20,7 +20,7 @@ let RoutesConfig = () => (
                   exact={route.exact}
                   render={ props => {
                      if (props.location.pathname === '/') {
-                         return <Redirect to="/home" />
+                         return <Redirect to="/index" />
                      } else {
                         return  <route.component {...props} routes={route.routes} />
                      }
