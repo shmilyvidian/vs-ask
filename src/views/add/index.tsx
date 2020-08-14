@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Form, Input, Button, Upload } from "antd";
+import { Form, Input, Button, Upload, message } from "antd";
 import {
   PlusOutlined,
   UploadOutlined,
@@ -90,10 +90,16 @@ const Add = () => {
   };
   const [customFilist, setCustomFilist] = useState<any[]>([]);
 
+  // 上传附件
   const handleChange = (e: any) => {
+    if (customFilist.length === 5) {
+      message.error('最多上传5份附件')
+      return
+    }
     const file = e.file;
     const fileList = e.fileList;
-    console.log(fileList.length)
+    console.log(customFilist.length)
+
     if (file.status !== "uploading") {
     } else {
       fileList.forEach((v: any) => {
@@ -214,7 +220,6 @@ const Add = () => {
         className="file-upload-btn"
       >
         <Upload
-          multiple
           customRequest={(e) => console.log(e)}
           onChange={handleChange}
           fileList={customFilist}
