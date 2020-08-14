@@ -137,7 +137,7 @@ const Add = () => {
         name={["user", "name"]}
         label="标题"
         rules={[{ required: true }]}
-        initialValue={defaultTitle} 
+        initialValue={defaultTitle}
       >
         <Input className="input-textarea" />
       </Form.Item>
@@ -186,29 +186,31 @@ const Add = () => {
             <li className="uploadState">上传状态</li>
             <li className="operate">操作</li>
           </ul>
-          {customFilist.map((v, i) => {
-            return (
-              <div className="file-item">
-                <div className="title-name-item"><FolderOpenOutlined /> {v.name}</div>
-                <div className="uploadState">
-                  {
-                    v.status === 'done' ? <img className="success" src={success} alt="" /> : <img src={fail} alt="" />
-                  }
-                  {v.status === 'done' ? '成功' : '失败'}
+          <div className="file-item-wrapper">
+            {customFilist.map((v, i) => {
+              return (
+                <div className="file-item">
+                  <div className="title-name-item"><FolderOpenOutlined /> {v.name}</div>
+                  <div className="uploadState">
+                    {
+                      v.status === 'done' ? <img className="success" src={success} alt="" /> : <img src={fail} alt="" />
+                    }
+                    {v.status === 'done' ? '成功' : '失败'}
+                  </div>
+                  <div
+                    className="operate"
+                    onClick={() => {
+                      customFilist.splice(i, 1);
+                      setCustomFilist([...customFilist]);
+                    }}
+                  >
+                    <img src={download} className="download" alt="" />
+                    <img src={deleteImg} alt="" />
+                  </div>
                 </div>
-                <div
-                  className="operate"
-                  onClick={() => {
-                    customFilist.splice(i, 1);
-                    setCustomFilist([...customFilist]);
-                  }}
-                >
-                  <img src={download} className="download" alt="" />
-                  <img src={deleteImg} alt="" />
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </Form.Item>
       <Form.Item name={["user", "telphone"]} label="回访电话" initialValue={defaultTelphone} >
