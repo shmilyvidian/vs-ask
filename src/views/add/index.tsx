@@ -163,7 +163,7 @@ const Add = () => {
       <Form.Item
         valuePropName="fileList"
         getValueFromEvent={normFile}
-        name={["user", "email"]}
+        name={["user", "file"]}
         label="附件"
       >
         <Upload
@@ -180,6 +180,8 @@ const Add = () => {
             最多可以上传5份文件，每个大小不超过10M
 					</span>
         </Upload>
+      </Form.Item>
+      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <div className="file-list">
           <ul className="file-list-wrapper">
             <li className="titleName">附件名称</li>
@@ -189,7 +191,7 @@ const Add = () => {
           <div className="file-item-wrapper">
             {customFilist.map((v, i) => {
               return (
-                <div className="file-item">
+                <div className="file-item" key={`f` + i}>
                   <div className="title-name-item">
                     <FolderOpenOutlined className="title-name-item-icon" />
                     <div className="title-name-item-text">{v.name}</div>
