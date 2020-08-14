@@ -93,6 +93,7 @@ const Add = () => {
   const handleChange = (e: any) => {
     const file = e.file;
     const fileList = e.fileList;
+    console.log(fileList.length)
     if (file.status !== "uploading") {
     } else {
       fileList.forEach((v: any) => {
@@ -202,7 +203,7 @@ const Add = () => {
           // onPreview={handlePreview}
           onChange={({ fileList }) => setFileList(fileList)}
         >
-          {fileList.length >= 8 ? null : uploadButton}
+          {fileList.length >= 3 ? null : uploadButton}
         </Upload>
       </Form.Item>
       <Form.Item
