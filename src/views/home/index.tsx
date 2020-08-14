@@ -41,7 +41,7 @@ const Home = () => {
   ];
 
   // 判断是否有选中
-  let [isChecked,setIsChecked] = useState(false)
+  let [isChecked, setIsChecked] = useState(false)
   const history = useHistory();
   const [btnInfos, setBtnInfos] = useState<IBtn[]>(infos);
 
@@ -62,6 +62,9 @@ const Home = () => {
     onOk: () => {
       setIsChecked(false)
       okCancelFn.fn();
+
+      // 清除回调事件 不允许点击
+      setBtnInfos([...infos]);
     },
     onCancel: () => {
       modalControl(false);
@@ -82,7 +85,6 @@ const Home = () => {
       let origin = infos;
       let delbtn = origin[1];
       delbtn.disabled = true;
-      // delbtn.isDelete = false;
 
       setIsChecked(false)
       setBtnInfos([...origin]);
@@ -95,7 +97,7 @@ const Home = () => {
   }
   return (
     <div className="vs-ask__home">
-      <ButtonWrap btnInfos={btnInfos} isChecked={isChecked}/>
+      <ButtonWrap btnInfos={btnInfos} isChecked={isChecked} />
       {isChecked}
       <TableWrap callback={onCallback} />
       <ModalWrap
@@ -105,7 +107,9 @@ const Home = () => {
         type="info"
       />
 
-      <div className="ask-endorsement">
+      <div className="ask-endorsement" onClick={
+        () => history.push("/add")
+      }>
       </div>
     </div>
   );
