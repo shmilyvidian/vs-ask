@@ -19,7 +19,7 @@ const PageFrame = () => {
           <img src={require('assets/svg/logo.svg')} className="pageFrame-header_logo" alt="logo" />
         </div>
         <div className="pageFrame-header_user">
-          <img src={require('assets/svg/logo.svg')} className="pageFrame-header_user_avatar" alt="avatar" />
+          <img src={require('assets/image/user.png')} className="pageFrame-header_user_avatar" alt="avatar" />
           <span>lisa</span>
         </div>
       </header>
