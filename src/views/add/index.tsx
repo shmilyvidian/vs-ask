@@ -18,6 +18,9 @@ import download from '../../assets/svg/download.svg'
 import success from '../../assets/svg/success.svg'
 import fail from '../../assets/svg/fail.svg'
 
+import jpg1 from '../../assets/image/1.jpg';
+import jpg2 from '../../assets/image/2.jpg';
+
 
 const Add = () => {
   const history = useHistory();
@@ -87,6 +90,7 @@ const Add = () => {
     return e && e.fileList;
   };
   const [customFilist, setCustomFilist] = useState<UploadFile<any>[]>([]);
+
   const handleChange = (e: any) => {
     const file = e.file;
     const fileList = e.fileList;
@@ -104,6 +108,21 @@ const Add = () => {
     if (history.location.state) {
       let t = history.location.state as { name: string };
       v = t.name;
+      // 显示默认图片
+      setFileList([
+        {
+          uid: '-1',
+          name: '1.jpg',
+          status: 'done',
+          url: jpg1
+        },
+        {
+          uid: '-2',
+          name: '2.jpg',
+          status: 'done',
+          url: jpg2
+        }
+      ])
     }
     return v;
   }, [history.location.state]);
@@ -124,6 +143,9 @@ const Add = () => {
     }
     return v;
   }, [history.location.state]);
+
+
+
 
   return (
     <Form
