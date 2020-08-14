@@ -43,6 +43,7 @@
 
   ul {
     list-style: none;
+
     li {
       float: left;
     }
@@ -83,6 +84,14 @@
 
 .form-wrapper {
   margin-top: 16px;
+
+  .ant-form-item {
+    margin-bottom: 32px;
+  }
+
+  .img-upload{
+    margin-bottom: 12px;
+  }
 }
 
 .title-name-item {
@@ -104,19 +113,25 @@
   margin-right: 4px;
 }
 
-.title-name-item-icon{
+.title-name-item-icon {
   margin-right: 4px;
 }
 
-.title-name-item-text{
+.title-name-item-text {
   width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.file-list-wrapper{
+.file-list-wrapper {
   display: flex;
   align-items: center;
   padding-top: 10px;
 }
+
+// :global {
+//   .ant-form-item{
+//     margin-bottom: 20px;
+//   }
+// }
