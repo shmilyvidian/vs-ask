@@ -273,7 +273,9 @@ const Add = () => {
                   <div
                     className="operate"
                   >
-                    <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                    <a href='../../assets/image/test.txt' download>
+                      <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                    </a>
                     <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
                       alt=""
                       onClick={() => {
