@@ -42,6 +42,7 @@ const Add = () => {
     },
   };
   const onFinish = (values: any) => {
+    debugger
     let orign = data;
     const date = new Date();
     const starttime = `${date.getFullYear()}-${
@@ -129,6 +130,9 @@ const Add = () => {
       // 编辑状态
       setIsEdit(true)
 
+      // 存在title将显示按钮
+      setDisabledSubmit(true)
+
       // 数据回写
       let t = history.location.state as { name: string };
       v = t.name;
@@ -181,6 +185,7 @@ const Add = () => {
       let t = history.location.state as { introduction: string };
       v = t.introduction;
     }
+    console.log(v)
     return v;
   }, [history.location.state]);
 
@@ -331,7 +336,8 @@ const Add = () => {
           </div>
         </div>
       </Form.Item>
-      <Form.Item name={["user", "telphone"]}
+      <Form.Item
+        name={["user", "telphone"]}
         label="回访电话"
         initialValue={defaultTelphone}
         rules={[
