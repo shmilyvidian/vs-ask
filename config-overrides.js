@@ -1,6 +1,7 @@
-const { override, fixBabelImports, addLessLoader, addWebpackAlias, addTslintLoader } = require('customize-cra')
-const path = require('path')
-
+const { override, fixBabelImports, addLessLoader, addWebpackAlias, addTslintLoader, setWebpackPublicPath } = require('customize-cra')
+const path = require('path');
+const { config } = require('process');
+console.log(process.env.NODE_ENV,'process.env.NODE_ENV')
 // 关闭mapsource
 const rewiredMap = () => config => {
     config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false;
@@ -34,6 +35,7 @@ const optimize =()=>config=>{
 
 
 module.exports = override(
+  process.env.NODE_ENV === 'development' ? setWebpackPublicPath('/') : setWebpackPublicPath('/idata/ask'),
   addTslintLoader(),
   fixBabelImports('import', {
     libraryName: 'antd',
