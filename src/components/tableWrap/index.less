@@ -1,27 +1,42 @@
-.filter-wrapper{
+.filter-wrapper {
   width: 74px;
   text-align: center;
   font-size: 14px;
   color: #606266;
 
-  &-top{
+  &-top {
     margin-bottom: 20px;
   }
-  
-  .font-color{
+
+  .font-color {
     color: #606266;
   }
 }
 
-.mr10{
+.mr10 {
   margin-left: 8px;
-  margin-right: 13px;
 }
 
-.link-class{
+.link-class {
   color: #606266;
 }
 
-.link-class:hover{
+.link-class:hover {
   color: #1890FF;
+}
+
+.list-table {
+  max-height: 610px;
+  overflow-y: auto;
+
+  .ant-table-thead>tr>th {
+    background-color: #f5f7fa;
+  }
+
+  .ant-table-thead .ant-table-cell:nth-child(2) {
+    padding: 0;
+  }
+  .ant-table-tbody .ant-table-cell:nth-child(2) {
+    padding: 0;
+  }
 }

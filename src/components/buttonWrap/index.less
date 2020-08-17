@@ -104,6 +104,11 @@
     border-color: #1890FF;
   }
 
+  &-btn-primary:hover {
+    background: #349DFF;
+    border-color: #1890FF;
+  }
+
   &-btn-default {
     color: #C0C4CC;
   }
@@ -127,4 +132,8 @@
 
 .btn-icon-delete-active:extend(.btn-icon-common) {
   background: url('../../assets/svg/delete.svg');
+}
+
+.button-wrap-btn-content:hover .btn-icon-delete-active:extend(.btn-icon-common){
+  background: url('../../assets/svg/delete-hover.svg');
 }

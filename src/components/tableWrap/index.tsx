@@ -66,7 +66,7 @@ const TableWrap = ({ callback }: ITable) => {
             onClick={() => handleclick(-1)}
             style={{
               cursor: "pointer",
-              color: filterState[-1] ? "blue" : "black",
+              color: filterState[-1] ? "#1890ff" : "#606266",
             }}
             className="filter-wrapper-top"
           >
@@ -76,7 +76,7 @@ const TableWrap = ({ callback }: ITable) => {
             onClick={() => handleclick(0)}
             style={{
               cursor: "pointer",
-              color: filterState[0] ? "blue" : "black",
+              color: filterState[0] ? "#1890ff" : "#606266",
             }}
             className="filter-wrapper-top"
           >
@@ -86,7 +86,7 @@ const TableWrap = ({ callback }: ITable) => {
             onClick={() => handleclick(1)}
             style={{
               cursor: "pointer",
-              color: filterState[1] ? "blue" : "black",
+              color: filterState[1] ? "#1890ff" : "#606266",
             }}
             className="font-color"
           >
@@ -108,6 +108,10 @@ const TableWrap = ({ callback }: ITable) => {
     </Popover>
   );
 
+  const tableHeader =(
+    <div className="table-height">标题</div>
+  )
+
   const chooseData = useMemo(() => {
     if (filterState.some((v) => v === true)) {
       return filterData;
@@ -118,7 +122,7 @@ const TableWrap = ({ callback }: ITable) => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: "标题",
+      title: tableHeader,
       dataIndex: "name",
       render: (_: any, record: DataType) => {
         return (
@@ -137,11 +141,13 @@ const TableWrap = ({ callback }: ITable) => {
       title: "开始时间",
       dataIndex: "startTime",
       width: 200,
+      align: 'center'
     },
     {
       title: filterTitle,
       dataIndex: "state",
       width: 200,
+      align: 'right',
       render: (_: any, record: DataType) => {
         return <span>{record.state === 0 ? "已完成" : "处理中"}</span>;
       },
@@ -149,6 +155,7 @@ const TableWrap = ({ callback }: ITable) => {
   ];
   const rowSelection: TableRowSelection<DataType> = {
     selectedRowKeys,
+    columnWidth: 50,
     onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
       // 删除数据方法
       const delfn = () => {
@@ -185,9 +192,11 @@ const TableWrap = ({ callback }: ITable) => {
 
   return (
     <Table
+      className='list-table'
       rowSelection={rowSelection}
       columns={columns}
       dataSource={chooseData}
+      pagination={false}
     ></Table>
   );
 };
