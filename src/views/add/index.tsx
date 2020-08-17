@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Form, Input, Button, Upload, message } from "antd";
+import { Form, Input, Button, Upload, message, Row, Col } from "antd";
 import {
   PlusOutlined,
   UploadOutlined,
@@ -70,7 +70,7 @@ const Add = () => {
       };
       orign.push(item);
     }
-    history.push("/");
+    history.push("/home");
   };
 
   const titleMaxLength = 20;
@@ -85,6 +85,8 @@ const Add = () => {
     e.target.name === 'title' ? setTitleInputLenth(length) : setIntrodInputLenth(length);
     e.target.value.length > 0 ? setDisabledSubmit(false) : setDisabledSubmit(true);
   }
+
+  let [isEdit, setIsEdit] = useState(false)
 
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadButton = (
@@ -124,6 +126,10 @@ const Add = () => {
   const defaultTitle = useMemo(() => {
     let v;
     if (history.location.state) {
+      // 编辑状态
+      setIsEdit(true)
+
+      // 数据回写
       let t = history.location.state as { name: string };
       v = t.name;
       // 显示默认图片
@@ -168,6 +174,7 @@ const Add = () => {
     }
     return v;
   }, [history.location.state]);
+
   const defaultIntroduction = useMemo(() => {
     let v;
     if (history.location.state) {
@@ -217,7 +224,12 @@ const Add = () => {
         initialValue={defaultTitle}
       >
         <div>
-          <Input className="input-textarea" placeholder="请输入标题" name="title" onChange={titleHandleChange} />
+          <Input
+            disabled={isEdit}
+            className="input-textarea"
+            placeholder="请输入标题"
+            name="title"
+            onChange={titleHandleChange} />
           <span className="length-tips">{titleInputLenth}/{titleMaxLength}</span>
         </div>
       </Form.Item>
@@ -234,7 +246,14 @@ const Add = () => {
         initialValue={defaultIntroduction}
       >
         <div>
-          <Input.TextArea rows={7} className="input-textarea" name="introduction" placeholder="请输入问题描述" onChange={titleHandleChange} />
+          <Input.TextArea
+            disabled={isEdit}
+            rows={7}
+            className="input-textarea"
+            name="introduction"
+            placeholder="请输入问题描述"
+            onChange={titleHandleChange}
+          />
           <span className="length-tips">{introdInputLenth}/{introductionMaxLength}</span>
         </div>
 
@@ -284,7 +303,7 @@ const Add = () => {
               return (
                 <div className="file-item" key={`f` + i}>
                   <div className="title-name-item">
-                    <img src={folder} alt="" className="title-name-item-icon"/>
+                    <img src={folder} alt="" className="title-name-item-icon" />
                     <div className="title-name-item-text">{v.name}</div>
                   </div>
                   <div className="uploadState">
@@ -321,12 +340,20 @@ const Add = () => {
           }
         ]}
       >
-        <Input className="input-textarea" placeholder="请输入回访电话" />
+        <Input
+          disabled={isEdit}
+          className="input-textarea"
+          placeholder="请输入回访电话"
+        />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
-          提交
-				</Button>
+        {
+          isEdit ? <Button type="primary" className="m__r--10" onClick={() => setIsEdit(false)}>
+            修改
+        </Button> : <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
+              提交
+        </Button>
+        }
         <Button htmlType="button" onClick={() => history.goBack()}>
           取消
 				</Button>
