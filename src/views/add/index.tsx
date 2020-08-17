@@ -211,11 +211,15 @@ const Add = () => {
       onFinish={onFinish}
       validateMessages={validateMessages}
     >
-      <Form.Item>
-        <div className={defaultTitle ? 'title-wrapper' : 'hidden'}>
-          编辑内容
+      <Row className={defaultTitle ? '' : 'hidden'}>
+        <Col span={8}></Col>
+        <Col span={16}>
+          <div className={defaultTitle ? 'title-wrapper' : 'hidden'}>
+            编辑内容
         </div>
-      </Form.Item>
+        </Col>
+      </Row>
+
       <Form.Item
         name={["user", "name"]}
         label="标题"
