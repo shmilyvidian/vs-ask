@@ -19,6 +19,7 @@ import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
 import folder from '../../assets/svg/folder.svg'
 import TextArea from "antd/lib/input/TextArea";
+import { tuple } from "antd/lib/_util/type";
 
 
 const Add = () => {
@@ -43,7 +44,6 @@ const Add = () => {
     },
   };
   const onFinish = (values: any) => {
-    debugger
     let orign = data;
     const date = new Date();
     const starttime = `${date.getFullYear()}-${
@@ -83,7 +83,6 @@ const Add = () => {
   // 是否禁用按钮
   const [disabledSubmit, setDisabledSubmit] = useState<boolean>(true);
   const titleHandleChange = (e: any) => {
-    debugger
 
     const length = e.target.value.length;
     e.target.name === 'title' ? setTitleInputLenth(length) : setIntrodInputLenth(length);
@@ -108,6 +107,12 @@ const Add = () => {
     return e && e.fileList;
   };
   const [customFilist, setCustomFilist] = useState<any[]>([]);
+
+  // 点击修改按钮
+  const onEdit = () =>{
+    setDisabledSubmit(false)
+    setIsEdit(false)
+  }
 
   // 上传附件
   const handleChange = (e: any) => {
@@ -136,11 +141,12 @@ const Add = () => {
       // 存在title将显示按钮
       setDisabledSubmit(true)
 
+
+
       // 数据回写
       let t = history.location.state as { name: string };
       v = t.name;
-
-      setTitleInputLenth(t.name.length);
+      setTitleInputLenth(v.length)
       // 显示默认图片
       setFileList([
         {
@@ -189,7 +195,7 @@ const Add = () => {
     if (history.location.state) {
       let t = history.location.state as { introduction: string };
       v = t.introduction;
-      setIntrodInputLenth(t.introduction.length);
+      setIntrodInputLenth(v.length)
     }
 
     return v;
@@ -203,6 +209,8 @@ const Add = () => {
     }
     return v;
   }, [history.location.state]);
+
+  
 
 
 
@@ -259,6 +267,7 @@ const Add = () => {
         }
         ]}
         validateTrigger="onBlur"
+        initialValue={defaultIntroduction}
       >
         <div>
 
@@ -367,9 +376,9 @@ const Add = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         {
-          isEdit ? <Button type="primary" className="m__r--10" onClick={() => setIsEdit(false)}>
+          isEdit ? <div className="m__r--10 edit-btn" onClick={onEdit}>
             修改
-        </Button> : <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
+        </div> : <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
               提交
         </Button>
         }
