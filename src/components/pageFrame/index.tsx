@@ -17,7 +17,7 @@ const PageFrame = () => {
       <div className="bg-wrapper">
         <header className="pageFrame-header">
           <div onClick={linkIndex}>
-            <img src={require('assets/svg/logo.svg')} className="pageFrame-header_logo" alt="logo" />
+            <img src={require('assets/image/logo.png')} className="pageFrame-header_logo" alt="logo" />
           </div>
           <div className="pageFrame-header_user">
             <img src={require('assets/image/user.png')} className="pageFrame-header_user_avatar" alt="avatar" />
