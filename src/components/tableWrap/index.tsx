@@ -109,7 +109,7 @@ const TableWrap = ({ callback }: ITable) => {
     </Popover>
   );
 
-  const tableHeader =(
+  const tableHeader = (
     <div className="table-height">标题</div>
   )
 
@@ -157,11 +157,15 @@ const TableWrap = ({ callback }: ITable) => {
     },
   ];
 
+
+
   // checkbox设置
   const rowSelection: TableRowSelection<DataType> = {
     selectedRowKeys,
     columnWidth: 34,
     onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
+      // delfn(selectedRows)
+
       // 删除数据方法
       const delfn = () => {
         let remain = innerData;
@@ -177,40 +181,36 @@ const TableWrap = ({ callback }: ITable) => {
           setFilterState([false, false]);
         }
       };
-      let isDel: boolean;
-      if (selectedRowKeys.length > 0) {
-        isDel = true;
-        callback({
-          delfn,
-          isDel,
-        });
-      } else {
-        isDel = false;
-        callback({
-          delfn,
-          isDel,
-        });
-      }
-      console.log(selectedRowKeys)
+
+      // 回调方法
+      callback({
+        delfn,
+        isDel: selectedRowKeys.length > 0,
+      });
       setRowKeys(selectedRowKeys);
     },
   };
 
   // 点击当前行选中 官方例子
-  const onClickRow = (record:{
+  const onClickRow = (record: {
     key: never
-  }) =>{
+  }) => {
     const list = [...selectedRowKeys];
     if (list.indexOf(record.key) >= 0) {
       list.splice(list.indexOf(record.key), 1);
     } else {
       list.push(record.key);
     }
+
+    // 返回当前是否操作删除状态
+    callback({
+      isDel: list.length > 0,
+    });
     setRowKeys(list);
   }
 
   // 每行操作
-  const onRow = (record:any) =>{
+  const onRow = (record: any) => {
     return {
       onClick: () => {
         onClickRow(record)
