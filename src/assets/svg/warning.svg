@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 20" version="1.1">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>必填项提示</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="07Ask问题单编辑页面-必填项提示" transform="translate(-1043.000000, -110.000000)" fill="#EF4642">
+            <g id="编组-2" transform="translate(343.000000, 100.000000)">
+                <g id="编组-6" transform="translate(28.000000, 0.000000)">
+                    <path d="M680,30 C675.58125,30 672,26.41875 672,22 C672,17.58125 675.58125,14 680,14 C684.41875,14 688,17.58125 688,22 C688,26.41875 684.41875,30 680,30 L680,30 Z M681,18 C681,17.446875 680.553125,17 680,17 L680,17 C679.446875,17 679,17.446875 679,18 L679,18 C679,18.553125 679.446875,19 680,19 L680,19 C680.553125,19 681,18.553125 681,18 L681,18 L681,18 Z M680,20 C680.552285,20 681,20.4477153 681,21 L681,26 C681,26.5522847 680.552285,27 680,27 C679.447715,27 679,26.5522847 679,26 L679,21 C679,20.4477153 679.447715,20 680,20 Z" id="必填项提示" transform="translate(680.000000, 22.000000) scale(1, -1) translate(-680.000000, -22.000000) "/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -45,7 +45,6 @@
   min-height: 160px;
   border: 1px solid #DCDFE6;
   border-radius: 4px;
-  border-radius: 4px;
 
   ul {
     list-style: none;
@@ -165,4 +164,54 @@
 }
 .hidden{
   display: none;
+}
+
+.ant-form-item-control-input{
+  display: inline-block;
+}
+.ant-form-item-explain{
+  display: inline-block;
+  ::before{
+    content: url(../../assets/svg/warning.svg);
+    padding-left: 15px;
+    padding-right: 2px;
+  }
+}
+
+.ant-form-item-control-input-content
+input::-webkit-input-placeholder{
+  color:#c0c4cc;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#c0c4cc;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#c0c4cc;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+  color:#c0c4cc;
+}
+
+.ant-input{
+  border-color: #DCDFE6;
+  border-radius: 4px;
+}
+.ant-btn{
+  border-radius: 4px;
+}
+.ant-upload-select-picture-card{
+  background-color: #F5F7FA !important;
+}
+
+.length-tips{
+  font-size: 14px;
+  color: #C0C4CC ;
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  bottom: 5px;
+}
+
+.ant-upload-list-picture .ant-upload-list-item, .ant-upload-list-picture-card .ant-upload-list-item{
+  padding: 0px;
 }

@@ -18,6 +18,8 @@ import fail from '../../assets/svg/fail.svg'
 
 import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
+import FormItem from "antd/lib/form/FormItem";
+import folder from '../../assets/svg/folder.svg'
 
 
 const Add = () => {
@@ -29,7 +31,7 @@ const Add = () => {
 
   const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
-    required: "${label}是必填项!",
+    required: "必填项!",
     types: {
       // eslint-disable-next-line no-template-curly-in-string
       email: "${label} is not validate email!",
@@ -72,6 +74,20 @@ const Add = () => {
     }
     history.push("/");
   };
+
+  const titleMaxLength = 20;
+  const introductionMaxLength = 200;
+  const [titleInputLenth, setTitleInputLenth] = useState<Number>(0);
+  const [introdInputLenth, setIntrodInputLenth] = useState<Number>(0);
+
+  // 是否禁用按钮
+  const [disabledSubmit, setDisabledSubmit] = useState<boolean>(true);
+  const titleHandleChange = (e: any) => {
+    const length = e.target.value.length;
+    e.target.name === 'title' ? setTitleInputLenth(length) : setIntrodInputLenth(length);
+    e.target.value.length > 0 ? setDisabledSubmit(false) : setDisabledSubmit(true);
+  }
+
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadButton = (
     <div>
@@ -97,7 +113,6 @@ const Add = () => {
     }
     const file = e.file;
     const fileList = e.fileList;
-    console.log(customFilist.length)
 
     if (file.status !== "uploading") {
     } else {
@@ -198,10 +213,15 @@ const Add = () => {
             max: 20,
             message: "标题内容不能超过20个字符"
           }
-        ]}
+        ]
+        }
+        validateTrigger="onBlur"
         initialValue={defaultTitle}
       >
-        <Input className="input-textarea" placeholder="请输入标题" />
+        <div>
+          <Input className="input-textarea" placeholder="请输入标题" name="title" onChange={titleHandleChange} />
+          <span className="length-tips">{titleInputLenth}/{titleMaxLength}</span>
+        </div>
       </Form.Item>
       <Form.Item
         name={["user", "introduction"]}
@@ -212,9 +232,14 @@ const Add = () => {
           message: "问题描述不能超过200个字符"
         }
         ]}
+        validateTrigger="onBlur"
         initialValue={defaultIntroduction}
       >
-        <Input.TextArea rows={7} className="input-textarea" placeholder="请输入问题描述" />
+        <div>
+          <Input.TextArea rows={7} className="input-textarea" name="introduction" placeholder="请输入问题描述" onChange={titleHandleChange} />
+          <span className="length-tips">{introdInputLenth}/{introductionMaxLength}</span>
+        </div>
+
       </Form.Item>
       <Form.Item className="img-upload" name={["user", "image"]} label="图片">
         <Upload
@@ -238,6 +263,7 @@ const Add = () => {
           customRequest={(e) => console.log(e)}
           onChange={handleChange}
           fileList={customFilist}
+          multiple
         // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         >
           <Button type="primary">
@@ -260,7 +286,7 @@ const Add = () => {
               return (
                 <div className="file-item" key={`f` + i}>
                   <div className="title-name-item">
-                    <FolderOpenOutlined className="title-name-item-icon" />
+                    <img src={folder} alt="" className="title-name-item-icon"/>
                     <div className="title-name-item-text">{v.name}</div>
                   </div>
                   <div className="uploadState">
@@ -300,7 +326,7 @@ const Add = () => {
         <Input className="input-textarea" placeholder="请输入回访电话" />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit" className="m__r--10">
+        <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
           提交
 				</Button>
         <Button htmlType="button" onClick={() => history.goBack()}>
