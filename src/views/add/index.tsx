@@ -11,7 +11,9 @@ import { data, DataType } from "components/tableWrap";
 
 
 import deleteImg from '../../assets/svg/delete.svg'
+import deleteGray from '../../assets/svg/deleteGray.svg'
 import download from '../../assets/svg/download.svg'
+import downloadDisable from '../../assets/svg/download-disable.svg'
 import success from '../../assets/svg/success.svg'
 import fail from '../../assets/svg/fail.svg'
 
@@ -94,7 +96,10 @@ const Add = () => {
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadButton = (
     <div>
-      <PlusOutlined />
+      {
+        isEdit ? <PlusOutlined className="disabled-add" /> : <PlusOutlined />
+      }
+
 
       <div className="ant-upload-text">最多可以上传3张，支持JPG、PNG</div>
     </div>
@@ -109,7 +114,7 @@ const Add = () => {
   const [customFilist, setCustomFilist] = useState<any[]>([]);
 
   // 点击修改按钮
-  const onEdit = () =>{
+  const onEdit = () => {
     setDisabledSubmit(false)
     setIsEdit(false)
   }
@@ -210,7 +215,7 @@ const Add = () => {
     return v;
   }, [history.location.state]);
 
-  
+
 
 
 
@@ -227,8 +232,8 @@ const Add = () => {
         <Col span={8}></Col>
         <Col span={16}>
           <div className={defaultTitle ? 'title-wrapper' : 'hidden'}>
-            编辑内容
-        </div>
+            {isEdit ? '查看内容' : '编辑内容'}
+          </div>
         </Col>
       </Row>
 
@@ -292,6 +297,7 @@ const Add = () => {
           // onPreview={handlePreview}
           onChange={({ fileList }) => setFileList(fileList)}
           className="upload-img-list"
+          disabled={isEdit}
         >
           {fileList.length >= 3 ? null : uploadButton}
         </Upload>
@@ -310,7 +316,7 @@ const Add = () => {
           multiple
         // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         >
-          <Button type="primary">
+          <Button disabled={isEdit} type="primary">
             <UploadOutlined /> 上传附件
 					</Button>
           <span className="fileTips">
@@ -343,14 +349,22 @@ const Add = () => {
                     className="operate"
                   >
                     <a href='../../assets/image/test.txt' download>
-                      <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                      {
+                        isEdit ? <img className="operate-enclosure operate-enclosure-download" alt="" src={downloadDisable} /> : <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                      }
+
                     </a>
-                    <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
-                      alt=""
-                      onClick={() => {
-                        customFilist.splice(i, 1);
-                        setCustomFilist([...customFilist]);
-                      }} />
+                    {
+                      isEdit ? <img className="operate-enclosure operate-enclosure-delete" src={deleteGray}
+                        alt=""
+                      /> : <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
+                        alt=""
+                        onClick={() => {
+                          customFilist.splice(i, 1);
+                          setCustomFilist([...customFilist]);
+                        }} />
+                    }
+
                   </div>
                 </div>
               );
