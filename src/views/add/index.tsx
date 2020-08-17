@@ -139,6 +139,8 @@ const Add = () => {
       // 数据回写
       let t = history.location.state as { name: string };
       v = t.name;
+
+      setTitleInputLenth(t.name.length);
       // 显示默认图片
       setFileList([
         {
@@ -187,8 +189,9 @@ const Add = () => {
     if (history.location.state) {
       let t = history.location.state as { introduction: string };
       v = t.introduction;
+      setIntrodInputLenth(t.introduction.length);
     }
-    console.log(v)
+
     return v;
   }, [history.location.state]);
 
