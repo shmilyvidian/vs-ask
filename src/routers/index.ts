@@ -5,15 +5,9 @@ import Index from 'views/index'
 
 const routes: any[] = [
   {
-    path: '/',
+    path: '/home',
     component: AppFrame,
     routes: [
-      {
-        path: '/index',
-        name: '入口',
-        component: Index,
-        show: true,
-      },
       {
         path: '/home',
         name: '首页',
@@ -27,7 +21,13 @@ const routes: any[] = [
         show: true,
       },
     ]
-  }
+  },
+  {
+    path: '/index',
+    name: '入口',
+    component: Index,
+    show: true,
+  },
 ]
 
 export default routes;
