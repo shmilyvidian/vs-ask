@@ -20,8 +20,6 @@ import fail from '../../assets/svg/fail.svg'
 import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
 import folder from '../../assets/svg/folder.svg'
-import TextArea from "antd/lib/input/TextArea";
-import { tuple } from "antd/lib/_util/type";
 
 
 const Add = () => {
