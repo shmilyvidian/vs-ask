@@ -35,11 +35,11 @@ const ButtonWrap = ({ btnInfos, isChecked }: IInfos) => {
                 const bt_cls = `button-wrapper-btn-${item.type}`
                 const delete_cls = (item["isDelete"] && isChecked) ? 'button-wrapper-btn-isDelete' : ''
                 return (
-                  <>
+                  <div key={i}
+                  >
                     <div
-                      key={i}
                       onClick={() => onClick(item)}
-                      className = {classnames(bt_cls,delete_cls,'button-wrapper-btn')}
+                      className={classnames(bt_cls, delete_cls, 'button-wrapper-btn')}
                     >
                       <div className="button-wrap-btn-content">
                         {item["icon"] === "delete" && (
@@ -54,7 +54,7 @@ const ButtonWrap = ({ btnInfos, isChecked }: IInfos) => {
                         <span className="button-wrap-add-text">{item["name"]}</span>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })
               : null}

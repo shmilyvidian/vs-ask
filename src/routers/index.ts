@@ -5,6 +5,13 @@ import Index from 'views/index'
 
 const routes: any[] = [
   {
+    path: '/index',
+    name: '入口',
+    component: Index,
+    exact:true,
+    show: true,
+  },
+  {
     path: '/',
     component: AppFrame,
     routes: [
@@ -21,12 +28,6 @@ const routes: any[] = [
         show: true,
       },
     ]
-  },
-  {
-    path: '/index',
-    name: '入口',
-    component: Index,
-    show: true,
   },
 ]
 

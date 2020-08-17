@@ -3,7 +3,6 @@ import { Form, Input, Button, Upload, message } from "antd";
 import {
   PlusOutlined,
   UploadOutlined,
-  FolderOpenOutlined,
 } from "@ant-design/icons";
 import { useHistory } from "react-router";
 
@@ -18,7 +17,6 @@ import fail from '../../assets/svg/fail.svg'
 
 import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
-import FormItem from "antd/lib/form/FormItem";
 import folder from '../../assets/svg/folder.svg'
 
 

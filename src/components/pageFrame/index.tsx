@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import { useHistory } from "react-router";
 import Home from 'views/home'
 import Add from 'views/add'
-import Index from 'views/index'
 import './index.less'
 
 const PageFrame = () => {
