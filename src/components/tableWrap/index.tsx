@@ -56,6 +56,7 @@ const TableWrap = ({ callback }: ITable) => {
     }
   };
 
+  // 过滤器自定义render
   const filterTitle = (
     <Popover
       placement="bottomRight"
@@ -112,6 +113,7 @@ const TableWrap = ({ callback }: ITable) => {
     <div className="table-height">标题</div>
   )
 
+  // 选中数据
   const chooseData = useMemo(() => {
     if (filterState.some((v) => v === true)) {
       return filterData;
@@ -120,6 +122,7 @@ const TableWrap = ({ callback }: ITable) => {
     }
   }, [filterState, innerData, filterData]);
 
+  // 每行数据内容设置 支持自定义
   const columns: ColumnsType<DataType> = [
     {
       title: tableHeader,
@@ -153,9 +156,11 @@ const TableWrap = ({ callback }: ITable) => {
       },
     },
   ];
+
+  // checkbox设置
   const rowSelection: TableRowSelection<DataType> = {
     selectedRowKeys,
-    columnWidth: 50,
+    columnWidth: 34,
     onChange: (selectedRowKeys: any, selectedRows: DataType[]) => {
       // 删除数据方法
       const delfn = () => {
@@ -186,9 +191,32 @@ const TableWrap = ({ callback }: ITable) => {
           isDel,
         });
       }
+      console.log(selectedRowKeys)
       setRowKeys(selectedRowKeys);
     },
   };
+
+  // 点击当前行选中 官方例子
+  const onClickRow = (record:{
+    key: never
+  }) =>{
+    const list = [...selectedRowKeys];
+    if (list.indexOf(record.key) >= 0) {
+      list.splice(list.indexOf(record.key), 1);
+    } else {
+      list.push(record.key);
+    }
+    setRowKeys(list);
+  }
+
+  // 每行操作
+  const onRow = (record:any) =>{
+    return {
+      onClick: () => {
+        onClickRow(record)
+      },
+    }
+  }
 
   return (
     <Table
@@ -197,6 +225,7 @@ const TableWrap = ({ callback }: ITable) => {
       columns={columns}
       dataSource={chooseData}
       pagination={false}
+      onRow={onRow}
     ></Table>
   );
 };

@@ -34,6 +34,7 @@ const ModalWrap = ({
       onCancel={() => {
         footer.onCancel();
       }}
+      centered={true}
       title="删除"
       footer={
         footer ? (
