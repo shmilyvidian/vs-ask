@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^5.1.5",
     "antd": "^4.5.3",
     "classnames": "^2.2.6",
+    "clean-webpack-plugin": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
@@ -23,6 +24,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "dll": "webpack -p --progress --config ./webpack.dll.conf.js",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },
