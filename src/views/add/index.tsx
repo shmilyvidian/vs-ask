@@ -18,6 +18,7 @@ import fail from '../../assets/svg/fail.svg'
 import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
 import folder from '../../assets/svg/folder.svg'
+import TextArea from "antd/lib/input/TextArea";
 
 
 const Add = () => {
@@ -228,15 +229,16 @@ const Add = () => {
         validateTrigger="onBlur"
         initialValue={defaultTitle}
       >
-        <div>
-          <Input
-            disabled={isEdit}
-            className="input-textarea"
-            placeholder="请输入标题"
-            name="title"
-            onChange={titleHandleChange} />
-          <span className="length-tips">{titleInputLenth}/{titleMaxLength}</span>
-        </div>
+        <Input
+          disabled={isEdit}
+          className="input-textarea"
+          placeholder="请输入标题"
+          name="title"
+          onChange={titleHandleChange}
+          suffix={
+            <span className="length-tips">{titleInputLenth}/{titleMaxLength}</span>
+          }
+        />
       </Form.Item>
       <Form.Item
         name={["user", "introduction"]}
@@ -248,12 +250,13 @@ const Add = () => {
         }
         ]}
         validateTrigger="onBlur"
-        initialValue={defaultIntroduction}
       >
         <div>
+
           <Input.TextArea
             disabled={isEdit}
             rows={7}
+            defaultValue={defaultIntroduction}
             className="input-textarea"
             name="introduction"
             placeholder="请输入问题描述"
@@ -261,8 +264,8 @@ const Add = () => {
           />
           <span className="length-tips">{introdInputLenth}/{introductionMaxLength}</span>
         </div>
-
       </Form.Item>
+
       <Form.Item className="img-upload" name={["user", "image"]} label="图片">
         <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
