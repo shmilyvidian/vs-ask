@@ -30,7 +30,7 @@ const Add = () => {
 
   const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
-    required: "${label}是必填项!",
+    required: "必填项!",
     types: {
       // eslint-disable-next-line no-template-curly-in-string
       email: "${label} is not validate email!",
@@ -203,6 +203,7 @@ const Add = () => {
         initialValue={defaultTitle}
       >
         <Input className="input-textarea" placeholder="请输入标题" />
+
       </Form.Item>
       <Form.Item
         name={["user", "introduction"]}
