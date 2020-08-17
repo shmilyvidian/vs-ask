@@ -9,7 +9,6 @@ import { useHistory } from "react-router";
 
 import "./add.less";
 import { data, DataType } from "components/tableWrap";
-import { UploadFile } from "antd/lib/upload/interface";
 
 
 import deleteImg from '../../assets/svg/delete.svg'
