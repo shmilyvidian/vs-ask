@@ -182,12 +182,13 @@ const TableWrap = ({ callback }: ITable) => {
       setRowKeys(selectedRowKeys);
     },
   };
-
   return (
     <Table
       rowSelection={rowSelection}
       columns={columns}
       dataSource={chooseData}
+      pagination={false}
+      scroll={{ y: 470 }}
     ></Table>
   );
 };
