@@ -152,7 +152,7 @@ const TableWrap = ({ callback }: ITable) => {
       width: 200,
       align: 'right',
       render: (_: any, record: DataType) => {
-        return <span>{record.state === 0 ? "已完成" : "处理中"}</span>;
+        return <span className="status-item">{record.state === 0 ? "已完成" : "处理中"}</span>;
       },
     },
   ];

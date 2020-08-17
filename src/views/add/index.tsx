@@ -82,6 +82,8 @@ const Add = () => {
   // 是否禁用按钮
   const [disabledSubmit, setDisabledSubmit] = useState<boolean>(true);
   const titleHandleChange = (e: any) => {
+    debugger
+
     const length = e.target.value.length;
     e.target.name === 'title' ? setTitleInputLenth(length) : setIntrodInputLenth(length);
     e.target.value.length > 0 ? setDisabledSubmit(false) : setDisabledSubmit(true);
@@ -270,6 +272,7 @@ const Add = () => {
           fileList={fileList}
           // onPreview={handlePreview}
           onChange={({ fileList }) => setFileList(fileList)}
+          className="upload-img-list"
         >
           {fileList.length >= 3 ? null : uploadButton}
         </Upload>
@@ -360,7 +363,7 @@ const Add = () => {
               提交
         </Button>
         }
-        <Button htmlType="button" onClick={() => history.goBack()}>
+        <Button htmlType="button" className="border-color-DCDFE6" onClick={() => history.goBack()}>
           取消
 				</Button>
       </Form.Item>
