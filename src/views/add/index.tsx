@@ -11,14 +11,15 @@ import { data, DataType } from "components/tableWrap";
 
 
 import deleteImg from '../../assets/svg/delete.svg'
+import deleteGray from '../../assets/svg/deleteGray.svg'
 import download from '../../assets/svg/download.svg'
+import downloadDisable from '../../assets/svg/download-disable.svg'
 import success from '../../assets/svg/success.svg'
 import fail from '../../assets/svg/fail.svg'
 
 import jpg1 from '../../assets/image/1.jpg';
 import jpg2 from '../../assets/image/2.jpg';
 import folder from '../../assets/svg/folder.svg'
-import TextArea from "antd/lib/input/TextArea";
 
 
 const Add = () => {
@@ -43,7 +44,6 @@ const Add = () => {
     },
   };
   const onFinish = (values: any) => {
-    debugger
     let orign = data;
     const date = new Date();
     const starttime = `${date.getFullYear()}-${
@@ -83,7 +83,6 @@ const Add = () => {
   // 是否禁用按钮
   const [disabledSubmit, setDisabledSubmit] = useState<boolean>(true);
   const titleHandleChange = (e: any) => {
-    debugger
 
     const length = e.target.value.length;
     e.target.name === 'title' ? setTitleInputLenth(length) : setIntrodInputLenth(length);
@@ -95,7 +94,10 @@ const Add = () => {
   const [fileList, setFileList] = useState<any[]>([]);
   const uploadButton = (
     <div>
-      <PlusOutlined />
+      {
+        isEdit ? <PlusOutlined className="disabled-add" /> : <PlusOutlined />
+      }
+
 
       <div className="ant-upload-text">最多可以上传3张，支持JPG、PNG</div>
     </div>
@@ -108,6 +110,12 @@ const Add = () => {
     return e && e.fileList;
   };
   const [customFilist, setCustomFilist] = useState<any[]>([]);
+
+  // 点击修改按钮
+  const onEdit = () => {
+    setDisabledSubmit(false)
+    setIsEdit(false)
+  }
 
   // 上传附件
   const handleChange = (e: any) => {
@@ -136,11 +144,12 @@ const Add = () => {
       // 存在title将显示按钮
       setDisabledSubmit(true)
 
+
+
       // 数据回写
       let t = history.location.state as { name: string };
       v = t.name;
-
-      setTitleInputLenth(t.name.length);
+      setTitleInputLenth(v.length)
       // 显示默认图片
       setFileList([
         {
@@ -189,7 +198,7 @@ const Add = () => {
     if (history.location.state) {
       let t = history.location.state as { introduction: string };
       v = t.introduction;
-      setIntrodInputLenth(t.introduction.length);
+      setIntrodInputLenth(v.length)
     }
 
     return v;
@@ -207,6 +216,8 @@ const Add = () => {
 
 
 
+
+
   return (
     <Form
       {...layout}
@@ -219,8 +230,8 @@ const Add = () => {
         <Col span={8}></Col>
         <Col span={16}>
           <div className={defaultTitle ? 'title-wrapper' : 'hidden'}>
-            编辑内容
-        </div>
+            {isEdit ? '查看内容' : '编辑内容'}
+          </div>
         </Col>
       </Row>
 
@@ -259,6 +270,7 @@ const Add = () => {
         }
         ]}
         validateTrigger="onBlur"
+        initialValue={defaultIntroduction}
       >
         <div>
 
@@ -283,6 +295,7 @@ const Add = () => {
           // onPreview={handlePreview}
           onChange={({ fileList }) => setFileList(fileList)}
           className="upload-img-list"
+          disabled={isEdit}
         >
           {fileList.length >= 3 ? null : uploadButton}
         </Upload>
@@ -301,7 +314,7 @@ const Add = () => {
           multiple
         // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         >
-          <Button type="primary">
+          <Button disabled={isEdit} type="primary">
             <UploadOutlined /> 上传附件
 					</Button>
           <span className="fileTips">
@@ -334,14 +347,22 @@ const Add = () => {
                     className="operate"
                   >
                     <a href='../../assets/image/test.txt' download>
-                      <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                      {
+                        isEdit ? <img className="operate-enclosure operate-enclosure-download" alt="" src={downloadDisable} /> : <img src={download} className="operate-enclosure operate-enclosure-download" alt="" />
+                      }
+
                     </a>
-                    <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
-                      alt=""
-                      onClick={() => {
-                        customFilist.splice(i, 1);
-                        setCustomFilist([...customFilist]);
-                      }} />
+                    {
+                      isEdit ? <img className="operate-enclosure operate-enclosure-delete" src={deleteGray}
+                        alt=""
+                      /> : <img className="operate-enclosure operate-enclosure-delete" src={deleteImg}
+                        alt=""
+                        onClick={() => {
+                          customFilist.splice(i, 1);
+                          setCustomFilist([...customFilist]);
+                        }} />
+                    }
+
                   </div>
                 </div>
               );
@@ -367,9 +388,9 @@ const Add = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         {
-          isEdit ? <Button type="primary" className="m__r--10" onClick={() => setIsEdit(false)}>
+          isEdit ? <div className="m__r--10 edit-btn" onClick={onEdit}>
             修改
-        </Button> : <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
+        </div> : <Button type="primary" htmlType="submit" className="m__r--10" disabled={disabledSubmit}>
               提交
         </Button>
         }
