@@ -5,7 +5,7 @@ import Index from 'views/index'
 
 const routes: any[] = [
   {
-    path: '/home',
+    path: '/',
     component: AppFrame,
     routes: [
       {
